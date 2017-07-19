@@ -8,14 +8,23 @@ import { GameOfLife } from './game.model';
 })
 export class AppComponent {
 
-  board = [[1,0],[0,1]];
-  resBoard = [[1,0],[0,1]];
+  board = [];
+  resBoard = [];
 
-  onShow(){
-    let game = new GameOfLife(16,7,6);
-     this.board = game.getBoard();
+  onShow() {
+     this.board = [];
+  this.resBoard = [];
+    let game = new GameOfLife(12, 12);
+    this.board = game.getBoard();
     // console.log(game.board);
     // game.play();
-    this.resBoard = game.play();
+    // this.resBoard = game.play();
+    var _this = this;
+
+    for (var i = 1; i <= 1050; i++) {
+      setTimeout(function () {
+        _this.resBoard = game.play();
+      }, 100*i);
+    }
   }
 }

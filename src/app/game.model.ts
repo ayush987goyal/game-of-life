@@ -2,7 +2,7 @@ export class GameOfLife {
 
     private board = [];
 
-    constructor(private turns: number, private length: number, private height: number) {
+    constructor( private length: number, private height: number) {
         for (var i = 0; i < height; i++) {
             let array: number[] = [];
             this.board.push(array);
@@ -37,8 +37,7 @@ export class GameOfLife {
     }
 
     play() {
-        for (var count = 0; count < this.turns; count++) {
-
+            // console.log("Playing");
             let tempBoard = [];
             
             for(var i=0;i<this.height;i++){
@@ -50,7 +49,6 @@ export class GameOfLife {
             }
 
             this.board = tempBoard;
-        }
         // console.table(this.board);
         return this.board;
     }

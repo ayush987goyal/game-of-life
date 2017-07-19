@@ -4,7 +4,7 @@
   <div class="container">
     <hr>
     <div class="row" *ngFor="let rowm of board; let i = index">
-        <div class=" col-md-1" *ngFor="let colm of board[i]">
+        <div class=" col-xs-1" *ngFor="let colm of board[i]" [ngClass]="{'redB':colm, 'yellowB': !colm}" >
             {{colm}}
         </div>
     </div>
@@ -13,7 +13,7 @@
   <div class="container">
     <hr>
     <div class="row" *ngFor="let row2 of resBoard; let j = index">
-        <div class=" col-md-1" *ngFor="let col2 of resBoard[j]">
+        <div class=" col-xs-1" *ngFor="let col2 of resBoard[j]" [ngClass]="{'redB':col2, 'yellowB': !col2}">
             {{col2}}
         </div>
     </div>
