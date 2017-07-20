@@ -1,6 +1,7 @@
 export class GameOfLife {
 
     private board = [];
+    private boardEmpty = false;
 
     constructor( private length: number, private height: number) {
         for (var i = 0; i < height; i++) {
@@ -39,13 +40,19 @@ export class GameOfLife {
     play() {
             // console.log("Playing");
             let tempBoard = [];
-            
+            let tempCount = 0;
             for(var i=0;i<this.height;i++){
             let array: number[] = [];
             tempBoard.push(array);                
                 for(var j=0;j<this.length;j++){
                     tempBoard[i].push( this.evaluateCell(i, j) );
+                    if(!tempBoard[i][j]){
+                        tempCount++;
+                    }
                 }
+            }
+            if(tempCount === (this.length * this.height)){
+                this.boardEmpty = true;
             }
 
             this.board = tempBoard;
@@ -55,6 +62,27 @@ export class GameOfLife {
 
     getBoard(){
         return this.board;
+    }
+
+    setBoard(newBoard){
+        this.board = newBoard;
+    }
+
+    updateBoard(row, col){
+        this.board[row][col] = !this.board[row][col];
+        this.boardEmpty = false;
+    }
+
+    clearBoard(){
+        for (var i = 0; i < this.height; i++) {
+            for (var j = 0; j < this.length; j++) {
+                this.board[i][j] = 0;
+            }
+        }
+    }
+
+    isBoardEmpty(){
+        return this.boardEmpty;
     }
 
 

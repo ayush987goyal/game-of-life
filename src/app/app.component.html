@@ -1,21 +1,27 @@
 <div class="container">
-  <button type="button" class=" btn btn-success" (click)="onShow()">Show</button>
-
-  <div class="container">
-    <hr>
-    <div class="row" *ngFor="let rowm of board; let i = index">
-        <div class=" col-xs-1" *ngFor="let colm of board[i]" [ngClass]="{'redB':colm, 'yellowB': !colm}" >
-            {{colm}}
-        </div>
-    </div>
+  <div class="row main-heading">
+    Game of Life
   </div>
-  <hr>
-  <div class="container">
-    <hr>
-    <div class="row" *ngFor="let row2 of resBoard; let j = index">
-        <div class=" col-xs-1" *ngFor="let col2 of resBoard[j]" [ngClass]="{'redB':col2, 'yellowB': !col2}">
-            {{col2}}
-        </div>
+  <div class="row">
+    <div class="container">
+      <div class="row main-row">
+        <button type="button" class=" btn btn-success col-md-2" (click)="onPlay()">Play</button>
+        <button class="btn btn-warning col-md-2" (click)="onPause()">Pause</button>
+        <button class="btn btn-danger col-md-2" (click)="onClear()">Clear</button>
+        <div class="col-md-4 gen"> Generations: {{counter}}</div>
+      </div>
+
+      <div class="container">
+        <table class="table table-bordered table-responsive">
+          <tbody>
+            <tr *ngFor="let rowm of resBoard; let i = index">
+              <th *ngFor="let colm of resBoard[i]; let j = index" [ngClass]="{'alive':colm, 'dead': !colm}" (click)="onCellChange(i, j)">
+                <!-- {{colm}} -->
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
